@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+</head>
+<body>
+<h2>Error</h2>
+<div>
+    <p th:text="${msg}"></p>
+    <p th:if="${msg == null}">없는 페이지 입니다!</p>
+</div>
+<br>
+<button onclick="location.href = '/'">메인으로 가기</button>
+</body>
+</html>

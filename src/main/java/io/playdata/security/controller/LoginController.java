@@ -1,6 +1,7 @@
 package io.playdata.security.controller;
 
 import io.playdata.security.model.Account;
+import io.playdata.security.repository.AccountRepository;
 import io.playdata.security.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,9 @@ public class LoginController {
 
     @Autowired
     private LoginService loginService;
+
+    @Autowired
+    private AccountRepository accountRepository;
 
     @GetMapping("/")
     public String index() {
@@ -34,12 +38,14 @@ public class LoginController {
         return "join";
     }
     @PostMapping("/join")
-    public String join(Account account) {
+    public String join(Account account) throws Exception {
         // 가입 로직을 수행하고 결과를 처리하는 부분을 구현하세요.
         // account 객체에는 사용자로부터 입력받은 값들이 들어 있습니다.
         // 필요에 따라서 AccountService 등의 서비스 클래스를 사용할 수도 있습니다.
         // 예를 들면:
         // accountService.join(account);
+
+
         loginService.join(account);
         // 가입이 성공적으로 완료되었다면 다음 페이지로 이동하도록 설정합니다.
         return "redirect:/login";
@@ -55,5 +61,17 @@ public class LoginController {
     public String gold(Model model) {
         model.addAttribute("grade", "gold");
         return "movie";
+    }
+
+    @GetMapping("login-fail")
+    public String loginFail(Model model) {
+        model.addAttribute("msg", "잘못된 Username 또는 password 입니다.");
+        return "error";
+    }
+
+    @GetMapping("access-denied")
+    public String accessDenied(Model model) {
+        model.addAttribute("msg", "권한이 없습니다.");
+        return "error";
     }
 }
