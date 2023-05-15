@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+</head>
+<body>
+<h2>Main</h2>
+<br>
+<div>
+    <h3>유저 정보</h3>
+    <p th:text="${#authentication.principal.username}"></p>
+    <p th:text="${#authentication.authorities.![authority].get(0)}"></p>
+</div>
+<div th:with="role = ${#authentication.authorities.![authority].get(0)}">
+    <div th:if="${role == 'ROLE_free'}">
+        <p>무료 회원 입니다. 시청을 위해선 결제 해주세요!</p>
+    </div>
+    <div th:if="${role == 'ROLE_basic'}">
+        <p>베이직 회원 입니다. 시청을 위해선 결제 해주세요!</p>
+    </div>
+    <div th:if="${role == 'ROLE_gold'}">
+        <p>골드 회원 입니다. 시청을 위해선 결제 해주세요!</p>
+    </div>
+    <button type="button" onclick="location.href = '/basic'">Basic</button>
+    <button type="button" onclick="location.href = '/gold'">Gold</button>
+</div>
+<br>
+<form th:action="@{/logout}" method="post">
+    <button>logout</button>
+</form>
+
+</body>
+</html>

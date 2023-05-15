@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Join</title>
+</head>
+<body>
+<h2>Join</h2>
+<form th:action="@{/join}" method="post">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required/>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required/>
+    </div>
+    <div>
+        <label for="role">Role:</label>
+        <select id="role" name="role" required>
+            <option value="free">Free</option>
+            <option value="basic">Basic</option>
+            <option value="gold">Gold</option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">Join</button>
+        <button type="button" onclick="location.href = '/login'">Back</button>
+    </div>
+</form>
+</body>
+</html>

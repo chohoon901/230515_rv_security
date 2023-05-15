@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+</head>
+<body>
+<h2>Main</h2>
+<div>
+    <p>free, basic, gold</p>
+    <p th:text="${grade}"></p>
+</div>
+<br>
+<div>
+    <h3>유저 정보</h3>
+    <p th:text="${#authentication.principal.username}"></p>
+    <p th:text="${#authentication.authorities.![authority].get(0)}"></p>
+</div>
+<button onclick="location.href='/'">메인으로 가기</button>
+
+</body>
+</html>
